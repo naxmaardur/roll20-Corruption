@@ -77,11 +77,12 @@ on('ready',()=>{
             var func = content[1];    
             var pc = content[2];
             var c = GetCharCorruption(pc);
-            var newC = parseInt(content[4]);
+            var newC = parseInt(content[3]);
             
             switch(func){
                 case "Add":
                     c += newC;
+                    
                     break;
                 case "Remove":
                     c -= newC;
@@ -97,7 +98,9 @@ on('ready',()=>{
                     return;
                     break;
             }
-            
+            if(c > 150){
+                c = 150
+            }
             SetCharCorrupion(pc,c);
             
             playerPageID = getPageForPlayer(msg.playerid);
